@@ -3,7 +3,7 @@ repos:
     hooks:
       - id: local-biome-check
         name: biome check
-        entry: pnpm @biomejs/biome check --write --files-ignore-unknown=true --no-errors-on-unmatched
+        entry: pnpm biome check --write --files-ignore-unknown=true --no-errors-on-unmatched
         language: system
         types: [text]
         files: "\\.(jsx?|tsx?|c(js|ts)|m(js|ts)|d\\.(ts|cts|mts)|jsonc?)$"
