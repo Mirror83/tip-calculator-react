@@ -7,7 +7,7 @@ on:
   merge_group:
 
 jobs:
-  ci:
+  lint-and-typecheck:
     runs-on: ubuntu-latest
 
     steps:
