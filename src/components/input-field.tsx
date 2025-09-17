@@ -1,4 +1,11 @@
-export function InputField({ label, icon }: { label?: string; icon?: string }) {
+type InputFieldProps = {
+  label?: string;
+  icon?: string;
+  value: number | null;
+  setValue: (value: number | null) => void;
+};
+
+export function InputField({ label, icon, value, setValue }: InputFieldProps) {
   return (
     <div>
       <label>{label}</label>
@@ -7,6 +14,10 @@ export function InputField({ label, icon }: { label?: string; icon?: string }) {
         <input
           type="number"
           placeholder="0"
+          value={value !== null ? value : ""}
+          onChange={(e) => {
+            setValue?.(e.target.value ? parseFloat(e.target.value) : null);
+          }}
           className="w-full text-right text-3xl font-bold text-very-dark-cyan placeholder:font-bold placeholder:text-3xl placeholder:text-dark-grayish-cyan focus:outline-none"
         />
       </div>
