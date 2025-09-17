@@ -1,15 +1,20 @@
 import { cn } from "../utils";
 
-type TipCalculationResultsProps = {} & React.HTMLAttributes<HTMLDivElement>;
+type TipCalculationResultsProps = {
+  totalPerPerson: number;
+  tipPerPerson: number;
+} & React.HTMLAttributes<HTMLDivElement>;
 
 export function TipCalculationResults({
+  totalPerPerson,
+  tipPerPerson,
   className,
 }: TipCalculationResultsProps) {
   return (
     <div className={cn("flex flex-col h-full justify-between", className)}>
       <div>
-        <ResultRow label="Tip Amount" amount="$0.00" />
-        <ResultRow label="Total" amount="$0.00" />
+        <ResultRow label="Tip Amount" amount={totalPerPerson} />
+        <ResultRow label="Total" amount={tipPerPerson} />
       </div>
       <button className="w-full bg-strong-cyan text-very-dark-cyan py-2 rounded-md font-bold active:bg-strong-cyan/10 hover:cursor-pointer self-justify-end">
         RESET
@@ -18,14 +23,22 @@ export function TipCalculationResults({
   );
 }
 
-function ResultRow({ label, amount }: { label: string; amount: string }) {
+const formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  minimumFractionDigits: 2,
+});
+
+function ResultRow({ label, amount }: { label: string; amount: number }) {
   return (
     <div className="flex flex-wrap gap-4 justify-between items-end mb-8 font-bold">
       <div className="flex flex-col">
         <span className="text-white">{label}</span>
         <span className="text-grayish-cyan text-sm">/ person</span>
       </div>
-      <span className="text-3xl lg:text-4xl text-strong-cyan">{amount}</span>
+      <span className="text-3xl lg:text-4xl text-strong-cyan">
+        {formatter.format(amount)}
+      </span>
     </div>
   );
 }
