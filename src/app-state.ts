@@ -22,3 +22,19 @@ export const useTipCalculatorStore = create<State & Actions>()((set) => ({
   setNumberOfPeople: (count) => set({ numberOfPeople: count }),
   reset: () => set({ billAmount: 0, tipPercentage: 0, numberOfPeople: 1 }),
 }));
+
+export function calculateTipPerPerson(
+  _billAmount: number | null,
+  _tipPercentage: number | null,
+  _numberOfPeople: number | null,
+): number {
+  return 0;
+}
+
+export function calculateTotalBillPerPerson(
+  _billAmount: number | null,
+  _tipPerPerson: number | null,
+  _numberOfPeople: number | null,
+): number {
+  return 0;
+}
