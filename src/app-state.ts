@@ -24,17 +24,35 @@ export const useTipCalculatorStore = create<State & Actions>()((set) => ({
 }));
 
 export function calculateTipPerPerson(
-  _billAmount: number | null,
-  _tipPercentage: number | null,
-  _numberOfPeople: number | null,
+  billAmount: number | null,
+  tipPercentage: number | null,
+  numberOfPeople: number | null,
 ): number {
-  return 0;
+  if (
+    billAmount === null ||
+    tipPercentage === null ||
+    numberOfPeople === null ||
+    numberOfPeople === 0
+  ) {
+    return 0;
+  }
+  const totalTip = billAmount * (tipPercentage / 100);
+  return totalTip / numberOfPeople;
 }
 
 export function calculateTotalBillPerPerson(
-  _billAmount: number | null,
-  _tipPerPerson: number | null,
-  _numberOfPeople: number | null,
+  billAmount: number | null,
+  tipPerPerson: number | null,
+  numberOfPeople: number | null,
 ): number {
-  return 0;
+  if (
+    billAmount === null ||
+    tipPerPerson === null ||
+    numberOfPeople === null ||
+    numberOfPeople === 0
+  ) {
+    return 0;
+  }
+  const totalBill = billAmount + tipPerPerson * numberOfPeople;
+  return totalBill / numberOfPeople;
 }
