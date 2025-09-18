@@ -13,8 +13,8 @@ export function TipCalculationResults({
   return (
     <div className={cn("flex flex-col h-full justify-between", className)}>
       <div>
-        <ResultRow label="Tip Amount" amount={totalPerPerson} />
-        <ResultRow label="Total" amount={tipPerPerson} />
+        <ResultRow label="Tip Amount" amount={tipPerPerson} />
+        <ResultRow label="Total" amount={totalPerPerson} />
       </div>
       <button className="w-full bg-strong-cyan text-very-dark-cyan py-2 rounded-md font-bold active:bg-strong-cyan/10 hover:cursor-pointer self-justify-end">
         RESET
