@@ -1,13 +1,17 @@
-import { cn } from "../utils";
+import { cn } from "@/utils";
 
 type TipCalculationResultsProps = {
   totalPerPerson: number;
   tipPerPerson: number;
+  canReset: boolean;
+  reset: () => void;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 export function TipCalculationResults({
   totalPerPerson,
   tipPerPerson,
+  canReset,
+  reset,
   className,
 }: TipCalculationResultsProps) {
   return (
@@ -16,7 +20,13 @@ export function TipCalculationResults({
         <ResultRow label="Tip Amount" amount={tipPerPerson} />
         <ResultRow label="Total" amount={totalPerPerson} />
       </div>
-      <button className="w-full bg-strong-cyan text-very-dark-cyan py-2 rounded-md font-bold active:bg-strong-cyan/10 hover:cursor-pointer self-justify-end">
+      <button
+        onClick={reset}
+        className={cn(
+          "w-full bg-strong-cyan text-very-dark-cyan py-2 rounded-md font-bold active:bg-strong-cyan/70 hover:cursor-pointer self-justify-end",
+          !canReset && "bg-strong-cyan/30 hover:cursor-not-allowed",
+        )}
+      >
         RESET
       </button>
     </div>

@@ -25,6 +25,7 @@ function App() {
   const setPresetTipPercentage = useTipCalculatorStore(
     (state) => state.setPresetTipPercentage,
   );
+  const reset = useTipCalculatorStore((state) => state.reset);
 
   const tipPercentageValue =
     tipPercentage?.mode === "preset"
@@ -74,6 +75,12 @@ function App() {
           <TipCalculationResults
             tipPerPerson={tipPerPerson}
             totalPerPerson={totalPerPerson}
+            reset={reset}
+            canReset={
+              billAmount !== null ||
+              tipPercentage !== null ||
+              numberOfPeople !== null
+            }
           />
         </div>
       </main>

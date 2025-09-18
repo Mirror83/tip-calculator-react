@@ -52,7 +52,8 @@ export const useTipCalculatorStore = create<State & Actions>()((set) => ({
         percentage !== null
           ? // Clear currently selected preset value when switching to custom
             { presetValue: null, customValue: percentage, mode: "custom" }
-          : { presetValue: null, customValue: null, mode: "custom" },
+          : // If the custom value is cleared, clear the entire tip percentage state
+            null,
     }),
   reset: () => set({ ...initialState }),
 }));
