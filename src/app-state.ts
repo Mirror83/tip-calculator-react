@@ -23,10 +23,14 @@ type Actions = {
   reset: () => void;
 };
 
-export const useTipCalculatorStore = create<State & Actions>()((set) => ({
+const initialState: State = {
   billAmount: null,
   tipPercentage: null,
   numberOfPeople: null,
+};
+
+export const useTipCalculatorStore = create<State & Actions>()((set) => ({
+  ...initialState,
   setBillAmount: (amount: number | null) => set({ billAmount: amount }),
   setNumberOfPeople: (count: number | null) => set({ numberOfPeople: count }),
   setPresetTipPercentage: (percentage: number | null) =>
@@ -50,7 +54,7 @@ export const useTipCalculatorStore = create<State & Actions>()((set) => ({
             { presetValue: null, customValue: percentage, mode: "custom" }
           : { presetValue: null, customValue: null, mode: "custom" },
     }),
-  reset: () => set({ billAmount: 0, tipPercentage: null, numberOfPeople: 1 }),
+  reset: () => set({ ...initialState }),
 }));
 
 export function calculateTipPerPerson(
