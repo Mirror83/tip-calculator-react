@@ -1,17 +1,22 @@
-import { cn } from "../utils";
+import type { TipPercentage } from "@/app-state";
+import { cn } from "@/utils";
 
 type SelectTipPercentageProps = {
-  currentTipPercentage: number | null;
-  setTipPercentage: (percentage: number | null) => void;
+  tipPercentage: TipPercentage | null;
+  setCustomTipPercentage: (value: number | null) => void;
+  setPresetTipPercentage: (value: number | null) => void;
   percentageOptions?: number[];
 } & React.HTMLAttributes<HTMLDivElement>;
 
 export function SelectTipPercentage({
-  currentTipPercentage: tipPercentage,
-  setTipPercentage,
+  tipPercentage,
+  setPresetTipPercentage,
+  setCustomTipPercentage,
   percentageOptions = [5, 10, 15, 25, 50],
   className,
 }: SelectTipPercentageProps) {
+  const mode = tipPercentage?.mode;
+
   return (
     <div className={className}>
       <div>Select Tip %</div>
@@ -20,26 +25,59 @@ export function SelectTipPercentage({
           <PercentageOption
             key={option}
             value={option}
-            selected={tipPercentage === option}
+            selected={
+              mode === "preset" ? tipPercentage?.presetValue === option : false
+            }
             onSelect={() => {
-              setTipPercentage(option);
+              setPresetTipPercentage(option);
             }}
           />
         ))}
-        <CustomPercentageInput />
+        <CustomPercentageInput
+          tipPercentage={tipPercentage}
+          setCustomTipPercentage={setCustomTipPercentage}
+        />
       </div>
     </div>
   );
 }
 
-function CustomPercentageInput() {
+type CustomPercentageInputProps = {
+  tipPercentage: TipPercentage | null;
+  setCustomTipPercentage: (value: number | null) => void;
+};
+
+function CustomPercentageInput({
+  tipPercentage,
+  setCustomTipPercentage,
+}: CustomPercentageInputProps) {
+  const mode = tipPercentage?.mode;
+  const value = tipPercentage?.customValue ?? null;
+
   return (
     <input
       type="number"
       placeholder="Custom"
-      className="w-full text-2xl font-bold text-very-dark-cyan placeholder:font-bold placeholder:text-2xl 
-       placeholder:text-dark-grayish-cyan focus:outline-none text-center bg-very-light-grayish-cyan border
-       border-very-light-grayish-cyan rounded-md hover:border-strong-cyan/90 py-2"
+      min={0}
+      max={100}
+      className={cn(
+        "w-full text-2xl font-bold text-very-dark-cyan placeholder:font-bold placeholder:text-2xl placeholder:text-dark-grayish-cyan focus:outline-none text-center bg-very-light-grayish-cyan border border-very-light-grayish-cyan rounded-md hover:border-strong-cyan/90 py-2",
+        mode === "custom"
+          ? "border-2 border-strong-cyan text-very-dark-cyan focus:border"
+          : "",
+      )}
+      value={value !== null ? value : ""}
+      onChange={(e) => {
+        const newValue = e.target.value ? parseFloat(e.target.value) : null;
+        if (newValue !== null && (newValue < 0 || newValue > 100)) {
+          return;
+        }
+        setCustomTipPercentage(newValue);
+      }}
+      onFocus={(e) => {
+        const newValue = e.target.value ? parseFloat(e.target.value) : null;
+        setCustomTipPercentage(newValue);
+      }}
     />
   );
 }

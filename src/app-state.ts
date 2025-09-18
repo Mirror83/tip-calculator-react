@@ -1,15 +1,25 @@
 import { create } from "zustand";
 
+export type TipPercentage = {
+  /** The currently selected preset value */
+  presetValue: number | null;
+  /** The currently entered custom value */
+  customValue: number | null;
+  /** The currently active mode */
+  mode: "preset" | "custom";
+};
+
 type State = {
   billAmount: number | null;
-  tipPercentage: number | null;
+  tipPercentage: TipPercentage | null;
   numberOfPeople: number | null;
 };
 
 type Actions = {
   setBillAmount: (amount: number | null) => void;
-  setTipPercentage: (percentage: number | null) => void;
   setNumberOfPeople: (count: number | null) => void;
+  setPresetTipPercentage: (percentage: number | null) => void;
+  setCustomTipPercentage: (percentage: number | null) => void;
   reset: () => void;
 };
 
@@ -17,10 +27,30 @@ export const useTipCalculatorStore = create<State & Actions>()((set) => ({
   billAmount: null,
   tipPercentage: null,
   numberOfPeople: null,
-  setBillAmount: (amount) => set({ billAmount: amount }),
-  setTipPercentage: (percentage) => set({ tipPercentage: percentage }),
-  setNumberOfPeople: (count) => set({ numberOfPeople: count }),
-  reset: () => set({ billAmount: 0, tipPercentage: 0, numberOfPeople: 1 }),
+  setBillAmount: (amount: number | null) => set({ billAmount: amount }),
+  setNumberOfPeople: (count: number | null) => set({ numberOfPeople: count }),
+  setPresetTipPercentage: (percentage: number | null) =>
+    set((state) => ({
+      tipPercentage:
+        percentage !== null
+          ? {
+              presetValue: percentage,
+              // Let custom value persist when switching to preset since custom value
+              // is driven by user input and not a selection
+              customValue: state.tipPercentage?.customValue ?? null,
+              mode: "preset",
+            }
+          : null,
+    })),
+  setCustomTipPercentage: (percentage: number | null) =>
+    set({
+      tipPercentage:
+        percentage !== null
+          ? // Clear currently selected preset value when switching to custom
+            { presetValue: null, customValue: percentage, mode: "custom" }
+          : { presetValue: null, customValue: null, mode: "custom" },
+    }),
+  reset: () => set({ billAmount: 0, tipPercentage: null, numberOfPeople: 1 }),
 }));
 
 export function calculateTipPerPerson(

@@ -2,13 +2,13 @@ import {
   calculateTipPerPerson,
   calculateTotalBillPerPerson,
   useTipCalculatorStore,
-} from "./app-state";
-import dollarIcon from "./assets/icon-dollar.svg";
-import personIcon from "./assets/icon-person.svg";
-import splitterLogo from "./assets/logo.svg";
-import { InputField } from "./components/input-field";
-import { SelectTipPercentage } from "./components/select-tip-percentage";
-import { TipCalculationResults } from "./components/tip-calculation-results";
+} from "@/app-state";
+import dollarIcon from "@/assets/icon-dollar.svg";
+import personIcon from "@/assets/icon-person.svg";
+import splitterLogo from "@/assets/logo.svg";
+import { InputField } from "@/components/input-field";
+import { SelectTipPercentage } from "@/components/select-tip-percentage";
+import { TipCalculationResults } from "@/components/tip-calculation-results";
 
 function App() {
   const billAmount = useTipCalculatorStore((state) => state.billAmount);
@@ -19,13 +19,21 @@ function App() {
   const setNumberOfPeople = useTipCalculatorStore(
     (state) => state.setNumberOfPeople,
   );
-  const setTipPercentage = useTipCalculatorStore(
-    (state) => state.setTipPercentage,
+  const setCustomTipPercentage = useTipCalculatorStore(
+    (state) => state.setCustomTipPercentage,
   );
+  const setPresetTipPercentage = useTipCalculatorStore(
+    (state) => state.setPresetTipPercentage,
+  );
+
+  const tipPercentageValue =
+    tipPercentage?.mode === "preset"
+      ? tipPercentage.presetValue
+      : (tipPercentage?.customValue ?? null);
 
   const tipPerPerson = calculateTipPerPerson(
     billAmount,
-    tipPercentage,
+    tipPercentageValue,
     numberOfPeople,
   );
 
@@ -51,8 +59,9 @@ function App() {
           />
           <SelectTipPercentage
             className="space-y-4"
-            setTipPercentage={setTipPercentage}
-            currentTipPercentage={tipPercentage}
+            setCustomTipPercentage={setCustomTipPercentage}
+            setPresetTipPercentage={setPresetTipPercentage}
+            tipPercentage={tipPercentage}
           />
           <InputField
             label="Number of People"
