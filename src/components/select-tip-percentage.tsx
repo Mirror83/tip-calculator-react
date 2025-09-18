@@ -19,7 +19,7 @@ export function SelectTipPercentage({
 
   return (
     <div className={className}>
-      <div>Select Tip %</div>
+      <div className="text-dark-grayish-cyan">Select Tip %</div>
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 text-2xl">
         {percentageOptions.map((option) => (
           <PercentageOption
