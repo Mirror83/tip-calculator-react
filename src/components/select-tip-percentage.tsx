@@ -61,7 +61,7 @@ function CustomPercentageInput({
       min={0}
       max={100}
       className={cn(
-        "w-full text-2xl font-bold text-very-dark-cyan placeholder:font-bold placeholder:text-2xl placeholder:text-dark-grayish-cyan focus:outline-none text-center bg-very-light-grayish-cyan border border-very-light-grayish-cyan rounded-md hover:border-strong-cyan/90 py-2",
+        "w-full text-2xl text-very-dark-cyan placeholder:text-2xl placeholder:text-dark-grayish-cyan focus:outline-none text-center bg-very-light-grayish-cyan border border-very-light-grayish-cyan rounded-md hover:border-strong-cyan/90 py-2",
         mode === "custom"
           ? "border-2 border-strong-cyan text-very-dark-cyan focus:border"
           : "",

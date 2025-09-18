@@ -1,6 +1,14 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: SpaceMonoBold;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/space-mono/SpaceMono-Bold.ttf");
+}
+
 @theme {
+  --font-display: SpaceMonoBold, sans-serif;
   --color-very-dark-cyan: hsl(183, 100%, 15%);
   --color-dark-grayish-cyan: hsl(186, 14%, 43%);
   --color-grayish-cyan: hsl(184, 14%, 56%);

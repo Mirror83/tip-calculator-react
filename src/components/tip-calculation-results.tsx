@@ -23,7 +23,7 @@ export function TipCalculationResults({
       <button
         onClick={reset}
         className={cn(
-          "w-full bg-strong-cyan text-very-dark-cyan py-2 rounded-md font-bold active:bg-strong-cyan/70 hover:cursor-pointer self-justify-end",
+          "w-full bg-strong-cyan text-very-dark-cyan py-2 rounded-md active:bg-strong-cyan/70 hover:cursor-pointer self-justify-end",
           !canReset && "bg-strong-cyan/30 hover:cursor-not-allowed",
         )}
       >
@@ -41,7 +41,7 @@ const formatter = new Intl.NumberFormat("en-US", {
 
 function ResultRow({ label, amount }: { label: string; amount: number }) {
   return (
-    <div className="flex flex-wrap gap-4 justify-between items-end mb-8 font-bold">
+    <div className="flex flex-wrap gap-4 justify-between items-end mb-8">
       <div className="flex flex-col">
         <span className="text-white">{label}</span>
         <span className="text-grayish-cyan text-sm">/ person</span>
