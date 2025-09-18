@@ -8,7 +8,7 @@ type InputFieldProps = {
 export function InputField({ label, icon, value, setValue }: InputFieldProps) {
   return (
     <div>
-      <label>{label}</label>
+      <label className="text-dark-grayish-cyan">{label}</label>
       <div className="flex items-center gap-4 bg-very-light-grayish-cyan rounded-md px-4 py-2 mt-2">
         <img src={icon} alt="" />
         <input
