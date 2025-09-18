@@ -1,13 +1,13 @@
 import { cn } from "../utils";
 
 type SelectTipPercentageProps = {
-  tipPercentage: number | null;
+  currentTipPercentage: number | null;
   setTipPercentage: (percentage: number | null) => void;
   percentageOptions?: number[];
 } & React.HTMLAttributes<HTMLDivElement>;
 
 export function SelectTipPercentage({
-  tipPercentage,
+  currentTipPercentage: tipPercentage,
   setTipPercentage,
   percentageOptions = [5, 10, 15, 25, 50],
   className,
