@@ -45,7 +45,7 @@ function App() {
   );
 
   return (
-    <div className="bg-light-grayish-cyan lg:flex lg:flex-col lg:items-center lg:justify-center lg:min-h-screen lg:py-8 lg:gap-16">
+    <div className="font-display bg-light-grayish-cyan lg:flex lg:flex-col lg:items-center lg:justify-center lg:min-h-screen lg:py-8 lg:gap-16">
       <div className="flex justify-center items-center h-[150px] lg:h-auto bg-light-cyan">
         <h1 className="sr-only">Splitter</h1>
         <img src={splitterLogo} className="mb-8" alt="Splitter logo" />

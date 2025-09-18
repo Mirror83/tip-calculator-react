@@ -18,7 +18,7 @@ export function InputField({ label, icon, value, setValue }: InputFieldProps) {
           onChange={(e) => {
             setValue?.(e.target.value ? parseFloat(e.target.value) : null);
           }}
-          className="w-full text-right text-3xl font-bold text-very-dark-cyan placeholder:font-bold placeholder:text-3xl placeholder:text-dark-grayish-cyan focus:outline-none"
+          className="w-full text-right text-3xl text-very-dark-cyan placeholder:text-3xl placeholder:text-dark-grayish-cyan focus:outline-none"
         />
       </div>
     </div>
