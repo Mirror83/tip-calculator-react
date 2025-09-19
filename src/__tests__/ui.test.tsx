@@ -1,11 +1,16 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { beforeAll, describe, expect, it } from "vitest";
 import App from "@/app";
 
 describe("App", () => {
-  it("renders", () => {
+  beforeAll(() => {
     render(<App />);
+  });
 
-    expect(screen.queryByText("Bill")).toBeVisible();
+  it("renders", () => {
+    expect(screen.getByRole("main")).toBeVisible();
+  });
+  it("has reset button disabled on initial render", () => {
+    expect(screen.getByRole("button", { name: "RESET" })).toBeDisabled();
   });
 });
