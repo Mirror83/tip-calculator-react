@@ -23,6 +23,9 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
 
+    /* Vitest and React Testing Library types */
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
+
     /* Import alias */
     "baseUrl": ".",
     "paths": {
