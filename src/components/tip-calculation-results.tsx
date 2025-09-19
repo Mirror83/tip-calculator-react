@@ -22,6 +22,7 @@ export function TipCalculationResults({
       </div>
       <button
         onClick={reset}
+        disabled={!canReset}
         className={cn(
           "w-full bg-strong-cyan text-very-dark-cyan py-2 rounded-md active:bg-strong-cyan/70 hover:cursor-pointer self-justify-end",
           !canReset && "bg-strong-cyan/30 hover:cursor-not-allowed",
