@@ -21,6 +21,7 @@ export function TipCalculationResults({
         <ResultRow label="Total" amount={totalPerPerson} />
       </div>
       <button
+        name="reset"
         onClick={reset}
         disabled={!canReset}
         className={cn(
@@ -40,14 +41,23 @@ const formatter = new Intl.NumberFormat("en-US", {
   minimumFractionDigits: 2,
 });
 
-function ResultRow({ label, amount }: { label: string; amount: number }) {
+function ResultRow({
+  label,
+  amount,
+}: {
+  label: "Tip Amount" | "Total";
+  amount: number;
+}) {
   return (
     <div className="flex flex-wrap gap-4 justify-between items-end mb-8">
       <div className="flex flex-col">
         <span className="text-white">{label}</span>
         <span className="text-grayish-cyan text-sm">/ person</span>
       </div>
-      <span className="text-3xl lg:text-4xl text-strong-cyan">
+      <span
+        className="text-3xl lg:text-4xl text-strong-cyan"
+        data-testid={label === "Tip Amount" ? "tip-amount" : "total-amount"}
+      >
         {formatter.format(amount)}
       </span>
     </div>

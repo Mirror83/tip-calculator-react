@@ -54,6 +54,7 @@ function App() {
         <div className="space-y-6">
           <InputField
             label="Bill"
+            name="bill"
             icon={dollarIcon}
             value={billAmount}
             setValue={setBillAmount}
@@ -66,6 +67,7 @@ function App() {
           />
           <InputField
             label="Number of People"
+            name="number-of-people"
             icon={personIcon}
             value={numberOfPeople}
             setValue={setNumberOfPeople}
