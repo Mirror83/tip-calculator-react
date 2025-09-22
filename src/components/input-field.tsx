@@ -1,18 +1,29 @@
 type InputFieldProps = {
+  name: string;
   label?: string;
   icon?: string;
   value: number | null;
   setValue: (value: number | null) => void;
 };
 
-export function InputField({ label, icon, value, setValue }: InputFieldProps) {
+export function InputField({
+  name,
+  label,
+  icon,
+  value,
+  setValue,
+}: InputFieldProps) {
   return (
     <div>
-      <label className="text-dark-grayish-cyan">{label}</label>
+      <label className="text-dark-grayish-cyan" htmlFor={name}>
+        {label}
+      </label>
       <div className="flex items-center gap-4 bg-very-light-grayish-cyan rounded-md px-4 py-2 mt-2">
         <img src={icon} alt="" />
         <input
           type="number"
+          id={name}
+          name={name}
           placeholder="0"
           value={value !== null ? value : ""}
           onChange={(e) => {
