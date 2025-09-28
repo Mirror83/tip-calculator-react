@@ -7,7 +7,7 @@ on:
   merge_group:
 
 jobs:
-  lint-and-typecheck:
+  lint-typecheck-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -33,3 +33,7 @@ jobs:
       - name: Run typecheck
         run: |
           pnpm typecheck
+
+      - name: Run tests
+        run: |
+          pnpm test
