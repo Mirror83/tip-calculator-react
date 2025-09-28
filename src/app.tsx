@@ -46,10 +46,10 @@ function App() {
 
   return (
     <div className="font-display bg-light-grayish-cyan lg:flex lg:flex-col lg:items-center lg:justify-center lg:min-h-screen lg:py-8 lg:gap-16">
-      <div className="flex justify-center items-center h-[150px] lg:h-auto bg-light-cyan">
+      <header className="flex justify-center items-center h-[150px] lg:h-auto bg-light-cyan">
         <h1 className="sr-only">Splitter</h1>
         <img src={splitterLogo} className="mb-8" alt="Splitter logo" />
-      </div>
+      </header>
       <main className="bg-white rounded-t-3xl lg:rounded-3xl p-8 max-w-5xl sm:grid lg:grid-cols-2 md:gap-8">
         <div className="space-y-6">
           <InputField
