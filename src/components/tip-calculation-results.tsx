@@ -21,6 +21,7 @@ export function TipCalculationResults({
         <ResultRow label="Total" amount={totalPerPerson} />
       </div>
       <button
+        type="button"
         name="reset"
         onClick={reset}
         disabled={!canReset}

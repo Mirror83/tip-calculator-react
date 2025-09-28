@@ -101,6 +101,7 @@ function PercentageOption({
 }: PercentageOptionProps) {
   return (
     <button
+      type="button"
       onClick={() => onSelect(value)}
       className={cn(
         "py-2 rounded-md hover:bg-light-grayish-cyan hover:text-very-dark-cyan cursor-pointer",
