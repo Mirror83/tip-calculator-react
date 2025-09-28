@@ -55,30 +55,36 @@ function CustomPercentageInput({
   const value = tipPercentage?.customValue ?? null;
 
   return (
-    <input
-      type="number"
-      placeholder="Custom"
-      min={0}
-      max={100}
-      className={cn(
-        "w-full text-2xl text-very-dark-cyan placeholder:text-2xl placeholder:text-dark-grayish-cyan focus:outline-none text-center bg-very-light-grayish-cyan border border-very-light-grayish-cyan rounded-md hover:border-strong-cyan/90 py-2",
-        mode === "custom"
-          ? "border-2 border-strong-cyan text-very-dark-cyan focus:border"
-          : "",
-      )}
-      value={value !== null ? value : ""}
-      onChange={(e) => {
-        const newValue = e.target.value ? parseFloat(e.target.value) : null;
-        if (newValue !== null && (newValue < 0 || newValue > 100)) {
-          return;
-        }
-        setCustomTipPercentage(newValue);
-      }}
-      onFocus={(e) => {
-        const newValue = e.target.value ? parseFloat(e.target.value) : null;
-        setCustomTipPercentage(newValue);
-      }}
-    />
+    <>
+      <label htmlFor="custom-tip" className="sr-only">
+        Custom
+      </label>
+      <input
+        id="custom-tip"
+        type="number"
+        placeholder="Custom"
+        min={0}
+        max={100}
+        className={cn(
+          "w-full text-2xl text-very-dark-cyan placeholder:text-2xl placeholder:text-dark-grayish-cyan focus:outline-none text-center bg-very-light-grayish-cyan border border-very-light-grayish-cyan rounded-md hover:border-strong-cyan/90 py-2",
+          mode === "custom"
+            ? "border-2 border-strong-cyan text-very-dark-cyan focus:border"
+            : "",
+        )}
+        value={value !== null ? value : ""}
+        onChange={(e) => {
+          const newValue = e.target.value ? parseFloat(e.target.value) : null;
+          if (newValue !== null && (newValue < 0 || newValue > 100)) {
+            return;
+          }
+          setCustomTipPercentage(newValue);
+        }}
+        onFocus={(e) => {
+          const newValue = e.target.value ? parseFloat(e.target.value) : null;
+          setCustomTipPercentage(newValue);
+        }}
+      />
+    </>
   );
 }
 
